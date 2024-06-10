@@ -1,0 +1,24 @@
+@import "../../../../variables.scss";
+
+.calendar-container {
+
+  &__hours:hover {
+    background-color: $purple-600;
+    color: $white;
+  }
+
+  & a.disabled-hour {
+    background-color: #e1e6ec;
+  }
+
+  & a.disabled,
+  & .disabled-hour {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+}
+
+.selected-hour {
+  background-color: $purple-600;
+  color: white;
+}

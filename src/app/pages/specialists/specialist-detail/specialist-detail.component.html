@@ -1,0 +1,14 @@
+<div class="flex flex-col items-center">
+  <div
+    class="card my-5 bg-white shadow-md rounded-xl border border-gray-200 flex flex-col md:flex-row overflow-hidden max-w-[1000px]"
+    *ngIf="specialist">
+    <div class="left-section flex-1 p-8 bg-white rounded-tl-xl md:rounded-bl-xl md:rounded-tr-none cursor-pointer"
+      routerLink="{{ specialist.id }}/">
+      <app-specialist-info [specialist]="specialist"></app-specialist-info>
+    </div>
+    <div class="right-section flex-1 p-4 bg-gray-100 rounded-bl-xl md:rounded-tr-xl md:rounded-bl-none w-full">
+      <app-calendar [schedule]="specialist.schedule"></app-calendar>
+    </div>
+  </div>
+
+</div>

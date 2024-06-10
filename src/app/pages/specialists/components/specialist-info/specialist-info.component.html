@@ -1,0 +1,51 @@
+<div class="flex flex-col items-center md:items-start md:flex-row">
+  <div class="">
+    <img class="w-32 h-32 object-cover rounded-xl" src="{{ specialist.image }}" />
+  </div>
+  <div class="info flex-1 ml-0 mt-4 md:ml-6 md:mt-0 text-gray-700 text-sm">
+    <h2 class="text-xl font-semibold">{{ specialist.name }}</h2>
+    <div class="crp mt-2 text-purple-900 font-semibold uppercase">
+      <span>CRP: {{ specialist.crp }}</span>
+      <span class="ml-2">
+        <span> | </span>
+        <span>{{ specialist.uf }}</span>
+      </span>
+    </div>
+
+    <div class="rating-container flex items-center mt-2">
+      <i class="fas fa-star text-yellow-500"></i>
+      <i class="fas fa-star text-yellow-500"></i>
+      <i class="fas fa-star text-yellow-500"></i>
+      <i class="fas fa-star text-yellow-500"></i>
+      <i class="fas fa-star text-yellow-500"></i>
+      <span class="ml-2"> ({{ specialist.rating }} avaliações) </span>
+    </div>
+
+    <div class="languages-container mt-2">
+      <span>Idioma(s): 
+        <span *ngFor="let language of specialist.languages">
+          {{ language }} |
+        </span>
+      </span>
+    </div>
+
+    <div class="specialties-container mt-2">
+      <ul class="list-none p-0">
+        <li *ngFor="let specialties of specialist.specialties">
+          {{ specialties }}
+        </li>
+      </ul>
+    </div>
+
+    <div class="price-container mt-2">
+      <p class="font-semibold uppercase">
+        <strong>{{ specialist.value | currency: "BRL" }}</strong>
+        <span> / 50 minutos </span>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="mt-5 text-justify text-sm pr-4 overflow-hidden  md:line-clamp-none description">
+  {{ specialist.description }}
+</div>

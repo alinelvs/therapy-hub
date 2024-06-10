@@ -1,0 +1,54 @@
+<div class="calendar-container flex flex-col justify-center items-center relative">
+  <div class="flex md:hidden justify-center items-center w-full p-2 mb-1 max-h-[50px]">
+    <a (click)="moveLeft()" [class.disabled]="!canMoveLeft"
+      class="h-8 w-8 items-center justify-center text-black cursor-pointer absolute left-4">
+      <i class="fas fa-arrow-left"></i>
+    </a>
+    <div class="text-center font-semibold text-gray-700 mx-4">
+      Agenda
+    </div>
+    <a (click)="moveRight()" [class.disabled]="!canMoveRight"
+      class="h-8 w-8 items-center justify-center text-black cursor-pointer absolute right-0">
+      <i class="fas fa-arrow-right"></i>
+    </a>
+  </div>
+
+  <div class="flex justify-center items-center md:w-full p-2 mb-1 relative max-h-[200px]">
+    <a (click)="moveLeft()" [class.disabled]="!canMoveLeft"
+      class="hidden md:flex h-8 w-8 items-center justify-center text-black cursor-pointer absolute left-0">
+      <i class="fas fa-arrow-left"></i>
+    </a>
+    <div class="flex justify-center text-center uppercase font-semibold text-gray-700 gap-2">
+      <div *ngFor="let day of displaySchedule" class="flex flex-col items-center">
+        <div class="bg-white p-3 m-1 rounded-md h-[60px] w-[84px]">
+          <div class="text-xs">{{ day.week }}</div>
+          <div class="text-sm">{{ day.month }}</div>
+        </div>
+      </div>
+    </div>
+    <a (click)="moveRight()" [class.disabled]="!canMoveRight"
+      class="hidden md:flex h-8 w-8 items-center justify-center text-black cursor-pointer absolute right-0">
+      <i class="fas fa-arrow-right"></i>
+    </a>
+  </div>
+
+  <div class="flex justify-center p-2 md:pl-6 overflow-x-auto md:w-full max-h-[250px]">
+    <div class="flex flex-col px-1 gap-1 text-center uppercase" *ngFor="let day of displaySchedule">
+      <div *ngFor="let hour of day.hours" [class.disabled-hour]="hour === '-'" (click)="selectHour(day, hour)"
+        [class.selected-hour]="selectedDay === day && selectedHour === hour"
+        class="flex gap-2 px-2 py-2 text-gray-700 items-center justify-center bg-white m-1 rounded-md cursor-pointer w-[84px] calendar-container__hours hover:bg-purple-500 hover:text-white">
+        <a>{{ hour }}</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-4 p-4 w-full text-center">
+    <div *ngIf="selectedDay && selectedHour" class="text-gray-700 mb-4">
+      <p>Dia: {{ selectedDay.week }}, {{ selectedDay.month }}</p>
+      <p>Horário: {{ selectedHour }}</p>
+    </div>
+    <app-button *ngIf="selectedDay && selectedHour" (click)="scheduleAppointment()">
+      Agendar
+    </app-button>
+  </div>
+</div>
